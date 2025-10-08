@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 
 #Set page configuration
 st.set_page_config(page_title="MOVIE DATA DASHBOARD", layout="wide")
@@ -25,7 +26,10 @@ if fl is not None:
     except Exception as e:
         st.error(f"Error reading file: {e}")
 else:
-    df = pd.read_csv(r"C:\Users\HP\Desktop\UI\important\Data Science\movie-success-prediction\data\processed\cleaned_movies_data.csv")
+    base_dir = os.path.dirname(os.path.abspath(__file__))  
+    data_path = os.path.join(base_dir, "..", "data", "processed", "cleaned_movies_data.csv")
+    df = pd.read_csv(data_path)
+
 
 #set filter in a sidebar
 st.sidebar.header("Choose your filter")
