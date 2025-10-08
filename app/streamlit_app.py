@@ -58,12 +58,15 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     num_movies = filtered_df.shape[0]
     st.metric(label="Total Number Of Movies", value=f"{num_movies:,}")
+
 with col2:
     avg_ratings = filtered_df["ratings"].mean() if "ratings" in filtered_df.columns else 0
     st.metric(label="Average Rating", value=f"{avg_ratings:,.2f}")
+
 with col3:
     total_votes = filtered_df["vote_count"].sum() if "vote_count" in filtered_df.columns else 0
     st.metric(label="Total Votes", value=f"{total_votes:,}")
+    
 with col4:
     st.markdown("<h3 style='text-align: center;'> Top Rated Movie</h3>", unsafe_allow_html=True)
     #top 10 movies by rating
@@ -81,7 +84,7 @@ with col1:
     "ratings":"mean",
     }).reset_index()
 
-    # Average Rating per Yeara
+    # Average Rating per Years
     # Create figure and axes
     fig, ax = plt.subplots()
     sns.lineplot(x="year", y="ratings", data=yearly, marker="o", color="purple", ax=ax)
